@@ -1,18 +1,19 @@
 import { db } from "@/lib/prisma";
 
 
-export const connect = async () => {
+const connect = async () => {
     try {
         //prismaでデータベースに接続
         db.$connect();
     } catch (error) {
+        console.log(error)
         return Error("DB接続失敗しました")
     }
 }
 
 
 // データベースからデータを取得する
-export const GET = async (req: Request) => {
+export const GET = async () => {
     try {
         await connect();
         const groups = await db.group.findMany(
@@ -21,6 +22,7 @@ export const GET = async (req: Request) => {
         return Response.json({groups},{ status: 200 })
 
     } catch (error) {
+        console.log(error)
         return Response.json({ messeage: "Error" },{ status: 500 })
 
     } finally {

@@ -3,12 +3,7 @@ import { headers } from 'next/headers';
 import GroupList from '../../components/GroupList'
 import useSWR from 'swr';
 
-type Group = {
-  id: any;
-  contractAddress: any;
-  name: any;
-  tags?: any[];
-};
+
 
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())

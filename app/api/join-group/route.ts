@@ -7,11 +7,12 @@ interface SubmitData {
     groupId: number
 }
 
-export const connect = async () => {
+const connect = async () => {
     try {
         //prismaでデータベースに接続
         db.$connect();
     } catch (error) {
+        console.log(error)
         return Error("DB接続失敗しました")
     }
 }
@@ -26,7 +27,7 @@ export const POST = async (req: NextRequest) => {
         
         joinData = {
             eoaAddress: data.eoaAddress,
-            group: { connect: { id: data.groupId } } },
+            group: { connect: { id: data.groupId } } }
         
         await connect();
         // 以下でprismaを使ってデータベースにデータを保存する 
@@ -45,6 +46,7 @@ export const POST = async (req: NextRequest) => {
         
 
     } catch (error) {
+        console.log(error)
         return Response.json({ messeage: "Error" },{ status: 500 })
 
     } finally {

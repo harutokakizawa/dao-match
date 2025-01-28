@@ -1,11 +1,12 @@
 import { db } from "@/lib/prisma";
-import { NextResponse } from "next/server";
 
-export const connect = async () => {
+
+const connect = async () => {
     try {
         //prismaでデータベースに接続
         db.$connect();
     } catch (error) {
+        console.log(error)
         return Error("DB接続失敗しました")
     }
 }
@@ -32,6 +33,7 @@ export const GET = async (req: Request,  { params }: { params: { id: string }}) 
         return Response.json({groups},{ status: 200 })
 
     } catch (error) {
+        console.log(error)
         return Response.json({ messeage: "Error" },{ status: 500 })
 
     } finally {

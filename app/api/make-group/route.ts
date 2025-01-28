@@ -10,11 +10,12 @@ interface SubmitData {
     description?: string
 }
 
-export const connect = async () => {
+const connect = async () => {
     try {
         //prismaでデータベースに接続
         db.$connect();
     } catch (error) {
+        console.log(error)
         return Error("DB接続失敗しました")
     }
 }
@@ -60,7 +61,7 @@ export const POST = async (req: NextRequest) => {
         await connect();
         // 以下でprismaを使ってデータベースにデータを保存する 
 
-        const createGroup = await db.group.create({ 
+        await db.group.create({ 
             data: groupData,
             include: {
                 joins: true,
@@ -76,6 +77,7 @@ export const POST = async (req: NextRequest) => {
         
 
     } catch (error) {
+        console.log(error)
         return Response.json({ messeage: "Error" },{ status: 500 })
 
     } finally {

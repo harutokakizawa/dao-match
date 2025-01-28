@@ -9,10 +9,7 @@
     "lint": "next lint",
     "postinstall": "prisma generate",
     "vercel-build": "prisma generate && prisma migrate deploy && next build"
-
-  
   },
-  
   "dependencies": {
     "@prisma/client": "^6.2.1",
     "@reown/appkit": "^1.6.4",
@@ -20,6 +17,7 @@
     "@safe-global/api-kit": "^2.5.7",
     "@safe-global/protocol-kit": "^5.2.0",
     "@tanstack/react-query": "^5.64.1",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "ethers": "^6.13.5",
