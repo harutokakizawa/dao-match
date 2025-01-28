@@ -27,11 +27,13 @@ export const GET = async (req: Request,  { params }: { params: { id: string }}) 
         );
         
         return Response.json({groups},{ status: 200 })
-
+    
     } catch (error) {
         return Response.json({ messeage: "Error" },{ status: 500 })
 
-    } finally {
+    } 
+    
+    finally {
     　　//必ず実行する
         await db.$disconnect();
     }

@@ -1,5 +1,5 @@
 import { db } from "@/lib/prisma";
-import { NextResponse } from "next/server";
+
 
 export const connect = async () => {
     try {
