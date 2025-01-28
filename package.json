@@ -12,15 +12,7 @@
 
   
   },
-  "rules": {
-        "no-unused-vars": ["error", {
-            "vars": "all",
-            "args": "after-used",
-            "caughtErrors": "all",
-            "ignoreRestSiblings": false,
-            "reportUsedIgnorePattern": false
-        }]
-    },
+  
   "dependencies": {
     "@prisma/client": "^6.2.1",
     "@reown/appkit": "^1.6.4",
