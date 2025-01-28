@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Group {
+  id                Int      @id @default(autoincrement())
+  contractAddress   String   @unique
+  name              String
+  purpose           String?
+  description       String?
+  createdAt         DateTime @default(now())
+  tags              GroupTag[]
+  joins             joinGroup[]
+}
+
+model Tag {
+  id                Int      @id @default(autoincrement())
+  name              String
+  createdAt         DateTime @default(now())
+  groups            GroupTag[]
+}
+
+model joinGroup {
+  id                Int      @id @default(autoincrement())
+  eoaAddress        String
+  group             Group @relation(fields: [groupId], references: [id])
+  groupId           Int
+  createdAt         DateTime @default(now())
+  @@unique([eoaAddress, groupId])
+}
+
+
+model GroupTag {
+  group             Group @relation(fields: [groupId], references: [id])
+  groupId           Int
+  tag               Tag @relation(fields: [tagId], references: [id])
+  tagId             Int
+  createdAt         DateTime @default(now())
+  @@id([groupId, tagId])
+}
