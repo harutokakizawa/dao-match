@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const baseUrl = process.env.VERCEL_ENV === 'production'
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
   : process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
     : 'http://localhost:3000'
 
 
