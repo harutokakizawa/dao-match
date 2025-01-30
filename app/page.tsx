@@ -20,6 +20,7 @@ export default function Home() {
   // 実際のアプリケーションでは、このデータをAPIから取得する必要があります。
   const ad = useAccount().address
   
+  
   const { data: myGroup, error: error1, isLoading: isLoad1 } = useSWR(`/api/myGroups/${ad}`, fetcher)
   if (error1) return <div>エラーが発生しました。</div>;
   if (isLoad1) return <div>読み込み中...</div>;
